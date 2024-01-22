@@ -1,0 +1,31 @@
+/** Some apps use titlebar class and some window */
+.titlebar,
+window {
+	border-radius: 0;
+	box-shadow: none;
+}
+
+/** also remove shaddows */
+decoration {
+	box-shadow: none;
+}
+
+decoration:backdrop {
+	box-shadow: none;
+}
+
+/* Remove rounded corners */
+.titlebar,
+.titlebar .background,
+decoration,
+window,
+window.background
+{
+    border-radius: 0;
+}
+
+/* Remove csd shadows */
+decoration, decoration:backdrop
+{
+    box-shadow: none;
+}

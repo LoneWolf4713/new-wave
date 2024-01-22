@@ -1,0 +1,26 @@
+neww
+set -g status off
+
+send-keys "stty -echo" C-m
+send-keys "tput civis -- invisible" C-m
+send-keys "export PS1=''" C-m
+send-keys "clear" C-m
+send-keys "~/.ncmpcpp/cover.sh " C-m
+
+split-window -v
+select-pane -t 1
+send-keys "ncmpcpp --config='~/.ncmpcpp/catalog.conf'" C-m
+send-keys 1
+
+select-pane -t 0
+split-window -h
+send-keys "ncmpcpp --config='~/.ncmpcpp/visualizer.conf'" C-m
+send-keys 8
+send-keys u
+
+resize-pane -t 0 -x 49 -y 23
+resize-pane -t 1 -y 23
+
+set-hook client-resized 'resize-pane -t 0 -x 49 -y 23'
+
+select-pane -t 2

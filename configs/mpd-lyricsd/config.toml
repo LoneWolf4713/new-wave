@@ -1,0 +1,7 @@
+lyrics_path = "/home/prtyksh/Music/.lyrics"
+
+[genius]
+access_token = "1iUOPm7ZxroAV_564oisizoI_TYpJsQxE5FCmQ8PAGvoZjJiWiULYaG6kVK_Y-je"
+
+[mpd]
+address = "localhost:6600"

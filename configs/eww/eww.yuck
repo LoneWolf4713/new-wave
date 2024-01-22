@@ -1,0 +1,77 @@
+(defpoll art		:interval "5s"  "~/.config/eww/music coverloc")
+(defpoll title		:interval "5s"  "~/.config/eww/music title")
+(defpoll artist		:interval "5s"  "~/.config/eww/music artist")
+(defpoll playpause	:interval "5s"  "~/.config/eww/music statusicon")
+(defpoll songtime 	:interval "5s"  "~/.config/eww/getSongDuration")
+(defpoll lyrics 	:interval "5s"  "cat ~/Music/.lyrics/lyrics.txt")
+
+
+(defwidget music []
+	(box 
+		:orientation "v" 
+		:class "k"
+		(box
+			:orientation "h"
+			:class "music"
+			:space-evenly 1
+			
+			(image 
+			:path "${art}" 
+			:class "img" 
+			:image-width 150
+			:halign "start"
+			)
+			(box
+				:orientation "v"
+				:class "details"
+				:halign "start"
+				(box
+				:class "text-box"
+				:orientation "v"
+				(label :text "⚡️Currently Playing⚡️" :class "heading")
+				(label :text "${title}" :class "text"))
+				(box
+				:class "text-box"
+				:orientation "v"
+				(label :text "🔥 From Artist 🔥" :class "heading")
+				(label :text "${artist}" :width 200 :wrap 1 :justify "left" ))
+				(box
+					:orientation "h"
+					:class "controls"
+					(button 
+						:class "previous"
+						:onclick "mpc prev"
+						(label :text "󰒮")
+	
+						)
+					(button
+						:class "playpause"
+						:onclick "mpc toggle"
+						(label :text "󰐎")
+						)
+					(button
+						:class "next"
+						:onclick "mpc next"
+						(label :text "󰒭")
+						)
+					))
+		)
+		(box
+			:orientation "v"
+			:class "lyrics"
+			(scroll :vscroll 1 "${lyrics}")
+			
+		)
+	)
+	)
+
+(defwindow example
+	:monitor 0
+	:stacking "bottom"
+	:geometry (geometry
+			:width "20%"
+			:height "20%"
+			:x "2%"
+			:y "3%"
+			:anchor "bottom left")
+	(music))

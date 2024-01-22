@@ -1,0 +1,98 @@
+#!/bin/env bash
+musicdir="/home/prtyksh/Music" #set this to your MPD music dir
+displaysize="300x300" #size of albumart window
+trap "kill $$" SIGINT
+
+
+############
+#extract art
+extract(){
+    rm /tmp/albumart.png
+	song=$(mpc -f %file% | head -1)
+    ffmpeg -i "$musicdir/$song" /tmp/albumart.png
+    mv /tmp/albumart.png /tmp/albumart
+}
+
+redraw(){
+    clear
+    echo -ne "\033[9999B"
+}
+
+dlimg(){
+    
+    mkdir /tmp/gimages
+    rm /tmp/gimages/*
+    google_images_download -n -k "$1" -o /tmp/gimages -l 15
+}
+
+display(){
+    source "$(ueberzug library)"
+    ImageLayer 0< <(
+    ImageLayer::add [identifier]="example0" [x]="1" [y]="1" [width]="$(($cols/2))" [path]="$1"
+    ImageLayer::remove [identifier]="example0"
+    sleep 5
+    )
+}
+
+if [ "$1" = "dl" ]
+then
+    if [ ! -f /bin/ueberzug ] ; then echo ueberzug is not installed!
+    else
+        cols=$(tput cols)
+        source "$(ueberzug library)"
+	    song=$(mpc -f "%file%" | head -1 | cut -d '/' -f 1)
+        album=$(mpc -f "%artist% %album%" | head -1)
+        redraw
+
+        dlimg "$album album art"
+
+        for FILE in /tmp/gimages/* 
+        do
+            printf "n + next image\ns + select image as new albumart\nq + quit\n\e[1m>\e[0m  "
+            ImageLayer 0< <( ImageLayer::add [identifier]="albumart" [x]="1" [y]="1" [width]="$(($cols/2))" [path]="$FILE" 2>/dev/null
+            read -r option
+            echo $option > /tmp/option
+            ImageLayer::remove [identifier]="albumart") 2>/dev/null
+            read -r option < /tmp/option
+            echo $option
+            [ "$option" = "q" ] && echo fuck && exit
+            [ "$option" = "s" ] && echo fuck && cp "$FILE" "$musicdir/$song" && exit
+            echo $option
+            echo FUCK
+            redraw
+        done
+        exit
+    fi
+fi
+
+
+#################
+#display albumart
+[[ -f /tmp/albumart ]] && feh -B black -R 2 --scale-down --g "$displaysize" /tmp/albumart &
+[[ -f /tmp/albumart ]] && disown %1
+
+for pid in $(ps -ef | grep "mpdvis" | awk '{print $2}')
+do
+    [ "$pid" != $$ ] && kill $pid
+done
+
+
+#################
+#if ran with 0 arg, put current album art into /tmp/albumart
+while true
+do
+    songdir=$(mpc -f %file% | head -1 | cut -d '/' -f 1)
+    if [ -f "$musicdir/$songdir/"*".png" ] 
+    then
+        rm /tmp/albumart
+        ln -s "$musicdir"/"${songdir%%/*}"/*.png /tmp/albumart
+    fi
+    if [ -f "/home/zoe/music/$songdir/"*".jpg" ]
+    then
+        rm /tmp/albumart
+        ln -s "$musicdir"/"${songdir%%/*}"/*.jpg /tmp/albumart
+    else
+        extract
+    fi
+    mpc current --wait
+done

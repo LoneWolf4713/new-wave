@@ -1,0 +1,203 @@
+{
+    "layer": "top",
+    "position": "top",
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "height": 20,
+    "spacing": 0,
+    "modules-left": [
+        "custom/launcher",
+        "sway/workspaces",
+        "custom/weather",
+	"mpd"
+	
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+    	"mpris",
+	"backlight",
+	"pulseaudio",
+        "network",
+        "battery",
+        "custom/powermenu"
+        
+    ],
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "on-click-right": "fullscreen",
+        "icon-theme": "WhiteSur",
+        "icon-size": 25,
+        "tooltip-format": "{title}"
+    },
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    "hyprland/workspaces": {
+        "on-click": "activate",
+        "format": "{icon}",
+        "format-icons": {
+            "default": "",
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8",
+            "9": "9",
+            "active": "󱓻",
+            "urgent": "󱓻"
+        },
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": []
+        }
+    },
+    "memory": {
+        "interval": 5,
+        "format": "   {}% ",
+        "max-length": 10
+    },
+    "cpu": {
+        "interval": 5,
+        "format": "   {}% ",
+        "max-length": 10
+    },
+    "tray": {
+        "spacing": 10
+    },
+    "clock": {
+        "tooltip-format": "<tt>{calendar}</tt>",
+        "format-alt": "   {:%a, %d %b %Y} ",
+        "format": "   {:%I:%M %p} "
+    },
+    "network": {
+        "format-wifi": "{icon} {essid}",
+        "format-disconnected": "Disconnected ⚠ ",
+        "format-icons": [
+            "󰤯 ",
+            "󰤟 ",
+            "󰤢 ",
+            "󰤥 ",
+            "󰤨 "
+        ],
+        "tooltip-format-disconnected": "Disconnected",
+        "tooltip-format-wifi": "{icon} {essid}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "on-click": "~/.config/rofi/rofi-wifi-menu.sh &",
+        "format-ethernet": "{ifname}",
+        "tooltip-format-ethernet": "󰀂  {ifname}\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+        "nospacing": 1,
+        "interval": 5
+    },
+    "pulseaudio": {
+        "format": "{icon}{volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "nospacing": 1,
+        "tooltip-format": "Volume : {volume}%",
+        "format-muted": "󰝟 ",
+        "format-icons": {
+            "headphone": " ",
+            "default": [
+                "󰕿 ",
+                "󰖀 ",
+                "󰕾 "
+            ]
+        },
+        "on-click": "pavucontrol",
+        "scroll-step": 1
+    },
+    "custom/launcher": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/launchers/misc/launcher.sh &"
+    },
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": {
+            "charging": [
+                "󰢜",
+                "󰂆",
+                "󰂇",
+                "󰂈",
+                "󰢝",
+                "󰂉",
+                "󰢞",
+                "󰂊",
+                "󰂋",
+                "󰂅"
+            ],
+            "default": [
+                "󰁺",
+                "󰁻",
+                "󰁼",
+                "󰁽",
+                "󰁾",
+                "󰁿",
+                "󰂀",
+                "󰂁",
+                "󰂂",
+                "󰁹"
+            ]
+        },
+        "interval": 5,
+        "states": {
+            "warning": 25,
+            "critical": 10
+        },
+        "tooltip": false
+    },
+    "custom/powermenu": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "~/.config/rofi/powermenu/type-6/powermenu.sh &"
+    },
+     "mpd": {
+        "format": "{stateIcon} {title}",
+        "format-disconnected": " Disconnected",
+        "format-stopped": " Stopped",
+        "unknown-tag": "N/A",
+        "interval": 2,
+	"state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "on-click": "mpc toggle",
+	"tooltip-format": "MPD (connected)",
+        "tooltip-format-disconnected": "MPD (disconnected)"
+    },
+    "mpris": {
+	"format": "{player_icon} {dynamic}",
+	"format-paused": "{status_icon} <i>{dynamic}</i>",
+	"player-icons": {
+		"spotify": "",
+		"default": "🎵"
+	},
+	"dynamic-order": ["title"],
+	"interval": 5,
+	"status-icons": {
+		"paused": "⏸"
+	},
+	"ignored-players": ["firefox"]
+},
+
+  "custom/weather": {
+    "format": "{}",
+    "format-alt": "{alt}",
+    "format-alt-click": "click-left",
+    "interval": 3600,
+    "return-type": "json",
+    "exec": "~/.config/waybar/weather-waybar-module.sh",
+    "exec-if": "ping openweathermap.org -c1",
+    "signal": 8
+  },
+}

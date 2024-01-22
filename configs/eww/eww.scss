@@ -1,0 +1,43 @@
+*{
+	font-family: "JetBrains Mono NL Medium"
+}
+
+.k{
+	padding: 2em;	
+}
+
+.lyrics,
+.music{
+	border: 2px solid transparent;
+	
+}
+
+.lyrics{
+	margin-top: 1em
+}
+.music{
+	margin-bottom:1em;
+	background-color: #df6bac;
+	color:#1A182C; 
+	font-size:13px; 
+	padding:.5rem
+}
+.img{
+	padding: 1em;
+}
+.text-box{
+	margin:.5em;
+	padding: 2px; 
+	border: 2px solid #1A182C; 
+}
+.heading{
+	font-weight:bolder;
+}
+
+button{
+	color:#1A182C;
+	font-size:32px;
+	border: 2px solid #1A182C; 
+	border-radius:0px; 
+}
+

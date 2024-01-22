@@ -1,0 +1,33 @@
+* {
+  bg-normal: #121212;
+  bg-alt: #191919;
+  bg-fcs: #302E31;
+  fg-normal: #C8C8C8;
+  fg-alt: #ABABAB;
+  accent-normal: #3F6CAD;
+  accent-alt: #553976;
+  accent-normal-brt: #2F88FF;
+  accent-alt-brt: #8853C7;
+  black: #211F21;
+  red: #7B3E59;
+  green: #798347;
+  yellow: #AE9F76;
+  blue: #3F6CAD;
+  magenta: #553976;
+  cyan: #416680;
+  white: #ADC4E3;
+  orange: #CC873F;
+  pink: #B65685;
+  brown: #473730;   
+  black-brt: #302E31;
+  red-brt: #A55377;
+  green-brt: #C8CC86;
+  yellow-brt: #D9C793;
+  blue-brt: #2F88FF;
+  magenta-brt: #8853C7;
+  cyan-brt: #6DABD6;
+  white-brt: #DCEFFF;
+  orange-brt: #CC9964;
+  pink-brt: #CC76A0;
+  brown-brt: #896A5D;
+}
