@@ -8,7 +8,7 @@ from unidecode import unidecode
 import jinja2
 
 # OpenWeatherMap API key
-appid = "9f815d625b1fa077b8d8f70bdfb0c205"
+appid = "<ENTER YOUR API KEY>"
 
 # define icons
 #  icons = {
