@@ -118,9 +118,4 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_QPA_PLATFORM="wayland"
 export QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
 
-#Alias
-alias songs='bash /home/prtyksh/.local/bin/songs.sh'
-alias sdl='spoti-dl -d /home/prtyksh/Music/songs/ -p 50 -c mp3 '
-alias playlists='bash /home/prtyksh/.local/bin/playlists.sh'
-
 
