@@ -7,4 +7,4 @@ WEATHER_PATH=$HOME/.config/waybar/weather.py
 #LAT=$(echo "$LOCATION" | awk '{split($0,l,";"); print l[1]}')
 #LON=$(echo "$LOCATION" | awk '{split($0,l,";"); print l[2]}')
 
-$WEATHER_PATH --lat "28.6139" --lon "77.2090" --output-format '{"text": "{{current.icon}} {{current.temperature}}°C", "alt": "{{city}}: {{current.temperature}}°C, {{current.description_long}} -> {{next.temperature}}°C, {{next.description_long}}", "tooltip": "{{city}}: {{current.temperature_min}}°C -> {{current.temperature_max}}°C"}'
+$WEATHER_PATH --lat "<your lattitude>" --lon "<your longitude>" --output-format '{"text": "{{current.icon}} {{current.temperature}}°C", "alt": "{{city}}: {{current.temperature}}°C, {{current.description_long}} -> {{next.temperature}}°C, {{next.description_long}}", "tooltip": "{{city}}: {{current.temperature_min}}°C -> {{current.temperature_max}}°C"}'
