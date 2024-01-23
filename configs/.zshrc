@@ -123,7 +123,4 @@ alias songs='bash /home/prtyksh/.local/bin/songs.sh'
 alias sdl='spoti-dl -d /home/prtyksh/Music/songs/ -p 50 -c mp3 '
 alias playlists='bash /home/prtyksh/.local/bin/playlists.sh'
 
-# SPOTIPY ENV VARS
-export SPOTIPY_CLIENT_ID="262b338829d24ed3868893d514d660a2"
-export SPOTIPY_CLIENT_SECRET="6bc8409f09224a06b7ea434fa10045ba"
-export SPOTIPY_REDIRECT_URI="http://localhost:8888/callback"
+
